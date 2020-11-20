@@ -8,6 +8,7 @@ http.onreadystatechange = () => {
     if (http.readyState === 4) {
         if(http.status === 200) {
             console.log("Datos obtenidos");
+            console.log(JSON.parse(http.responseText));
         }
         else {
             console.log("Error al obtener los datos");
