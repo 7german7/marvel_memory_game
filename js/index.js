@@ -1,8 +1,9 @@
-const TS = "1";
-const KEY_API = "3bb70d706a9730be29cb1c76f9df1c1c";
-const HASH = "c8347048ae8c9d6a58495c461d50b09b";
-let personName = "Loki";
+const TS = "&ts=1";
+const KEY_API = "&apikey=3bb70d706a9730be29cb1c76f9df1c1c";
+const HASH = "&hash=c8347048ae8c9d6a58495c461d50b09b";
+const BASE_URL = "https://gateway.marvel.com:443/v1/public/characters?name=";
 
+let personName = "Hulk";
 /*
 1. Spider-Man
 2. Thor
@@ -16,7 +17,7 @@ let personName = "Loki";
 10. Loki
 */
 
-let URL_API = `https://gateway.marvel.com:443/v1/public/characters?name=${personName}&ts=${TS}&apikey=${KEY_API}&hash=${HASH}`;
+let URL_API = `${BASE_URL}${personName}${TS}${KEY_API}${HASH}`;
 
 let fetchData = (URL_API) => {
     return new Promise( (resolve, reject)=> {
@@ -48,16 +49,3 @@ fetchData(URL_API)
     .catch(error =>{
         console.error(error);
     });
-
-
-/*Obtener la imagen de una personaje*/
-
-// URL =
-// let response = JSON.parse(http.responseText);
-// let imgUrl = response.data.results[0].thumbnail.path;
-// let extension = response.data.results[0].thumbnail.extension;
-// console.log(imgUrl+"."+extension);
-
-/*Obtener el ID del comic avengers */
-
-// url = https://gateway.marvel.com:443/v1/public/comics?title=avengers&apikey=3bb70d706a9730be29cb1c76f9df1c1c
