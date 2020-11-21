@@ -22,6 +22,7 @@ let charactersList = [
     "Loki"
 ];
 
+/*Funcion para obtener los datos de los Personajes*/
 let fetchData = (URL_API) => {
     return new Promise( (resolve, reject)=> {
         let http = new XMLHttpRequest();
@@ -29,7 +30,7 @@ let fetchData = (URL_API) => {
         http.onreadystatechange = () => {
             if (http.readyState === 4) {
                 if(http.status === 200) {
-                    console.log("Datos obtenidos");
+                    //console.log("Datos obtenidos");
                     resolve(JSON.parse(http.responseText));
                 }
                 else {
@@ -41,6 +42,19 @@ let fetchData = (URL_API) => {
     });
 }
 
+/*Funcion para mostrar los datos de los personajes*/
+function showCharacters(characters) {
+    characters.forEach(character => {
+        let div = document.createElement("div");
+        div.innerHTML = character.name;
+        document.body.appendChild(div);
+    });
+}
+
+
+
+
+/*Cuerpo Principal de mi APP*/
 charactersList.forEach(character => {
     let URL_API = `${BASE_URL}${character}${TS}${KEY_API}${HASH}`;
     fetchData(URL_API)
@@ -56,7 +70,7 @@ charactersList.forEach(character => {
         });
         if(character.length===10){
             console.log(characters);
-
+            showCharacters(characters);
         };
     })
     .catch(error =>{
