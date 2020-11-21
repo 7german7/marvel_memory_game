@@ -1,3 +1,8 @@
+/*
+API: Marvel
+*/
+
+/*Parametros para conectar con la API*/
 const TS = "&ts=1";
 const KEY_API = "&apikey=3bb70d706a9730be29cb1c76f9df1c1c";
 const HASH = "&hash=c8347048ae8c9d6a58495c461d50b09b";
