@@ -51,9 +51,6 @@ function showCharacters(characters) {
     });
 }
 
-
-
-
 /*Cuerpo Principal de mi APP*/
 charactersList.forEach(character => {
     let URL_API = `${BASE_URL}${character}${TS}${KEY_API}${HASH}`;
