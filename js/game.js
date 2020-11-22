@@ -1,22 +1,6 @@
-/*Configurations*/
-const TS = "&ts=1";
-const KEY_API = "&apikey=3bb70d706a9730be29cb1c76f9df1c1c";
-const HASH = "&hash=c8347048ae8c9d6a58495c461d50b09b";
-const BASE_URL = "https://gateway.marvel.com:443/v1/public/characters?name=";
-const charactersList = [
-    "Hulk",
-    "Spider-Man",
-    "Thor",
-    "Thanos",
-    "Black Widow",
-    "Captain America",
-    "Black Panther",
-    "Iron Man",
-    "Hawkeye"
-    //"Loki"
-];
+import config from "./config";
 
-let URL_API = `${BASE_URL}${charactersList}${TS}${KEY_API}${HASH}`;
+let URL_API = `${config.BASE_URL}${config.charactersList}${config.TS}${config.KEY_API}${config.HASH}`;
 
 class Game {
     constructor(characters) {
@@ -74,7 +58,7 @@ class Game {
     }
 
     fetchCharacterData = (character) => {
-        let URL_API = `${BASE_URL}${character}${TS}${KEY_API}${HASH}`;
+        let URL_API = `${config.BASE_URL}${character}${config.TS}${config.KEY_API}${config.HASH}`;
         return new Promise( (resolve, reject)=> {
             let http = new XMLHttpRequest();
             http.open("GET", URL_API, true);
@@ -102,4 +86,4 @@ class Game {
     }
 }
 
-let game = new Game(charactersList);
+let game = new Game(config.charactersList);
