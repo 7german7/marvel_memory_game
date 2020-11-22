@@ -1,0 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  border: 5px solid green;
+}
+
+main {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid red;
+}
+
+.cards__container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  border: 5px solid blue;
+  gap: 20px;
+}
+
+.card-item {
+  border: 5px solid purple;
+  width: auto;
+  text-align: center;
+  max-width: 270px;
+}
+
+.card-item img {
+  width: 100%;
+}

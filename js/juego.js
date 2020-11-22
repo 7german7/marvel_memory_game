@@ -12,8 +12,8 @@ const charactersList = [
     "Captain America",
     "Black Panther",
     "Iron Man",
-    "Hawkeye",
-    "Loki"
+    "Hawkeye"
+    //"Loki"
 ];
 
 let URL_API = `${BASE_URL}${charactersList}${TS}${KEY_API}${HASH}`;
