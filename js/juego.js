@@ -41,16 +41,36 @@ class Game {
     }
 
     showCharacters() {
-        console.table(this.characters);
+        console.log(this.characters);
     }
 
-    createCards() {
-        for (let i = 0; i < this.characters.length; i++) {
-            const character = this.characters[i].name;
-            let div = document.createElement("div");
-            div.innerHTML = character;
-            document.body.appendChild(div);
-        }
+    createCards() { /*Generador de las cartas HTML*/
+        setTimeout(()=>{
+            for (let i = 0; i < this.characters.length; i++) {
+                let characterName = this.characters[i].name;
+                let characterPicture = this.characters[i].thumbnail.path +"."+ this.characters[i].thumbnail.extension;
+
+                /*Contenedor de Imagenes*/
+                let container = document.querySelector(".cards__container");
+
+                /*Contenedor de Imagen*/
+                let div = document.createElement("div");
+                div.classList.add("card-item");
+
+                /*Imagen*/
+                let img = document.createElement("img");
+                let attr = document.createAttribute("src");
+                attr.value = characterPicture;
+                img.setAttributeNode(attr);
+                attr = document.createAttribute("alt");
+                attr.value = characterName;
+                img.setAttributeNode(attr);
+
+                /*Ubicaciones*/
+                container.appendChild(div);
+                div.appendChild(img);
+            }
+        },1000)
     }
 
     fetchCharacterData = (character) => {
