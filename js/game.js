@@ -29,10 +29,10 @@ class Game {
 
     createCards() { /*Generador de las cartas HTML*/
         setTimeout(()=>{
-            let randomCards = this.randomCards();
-            for (let i = 0; i < randomCards.length; i++) {
-                let characterName = randomCards[i].name;
-                let characterPicture = randomCards[i].thumbnail.path +"."+ randomCards[i].thumbnail.extension;
+            let randomCharacters = this.randomCharacters();
+            for (let i = 0; i < randomCharacters.length; i++) {
+                let characterName = randomCharacters[i].name;
+                let characterPicture = randomCharacters[i].thumbnail.path +"."+ randomCharacters[i].thumbnail.extension;
 
                 /*Contenedor de Imagenes*/
                 let container = document.querySelector(".cards__container");
@@ -57,15 +57,15 @@ class Game {
         },1000)
     }
 
-    randomCards(){
-        let randomCards = [];
+    randomCharacters(){
+        let randomCharacters = [];
         let copyCharacters = [...this.characters];
 
-        randomCards = this.characters.concat(copyCharacters);
-        randomCards.sort(function() { return Math.random() - 0.5 });
-        console.table(randomCards);
+        randomCharacters = this.characters.concat(copyCharacters);
+        randomCharacters.sort(function() { return Math.random() - 0.5 });
+        console.table(randomCharacters);
 
-        return randomCards;
+        return randomCharacters;
     }
 
     fetchCharacterData = (character) => {
