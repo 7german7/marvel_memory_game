@@ -1,9 +1,8 @@
 import config from "./config";
 
-let URL_API = `${config.BASE_URL}${config.charactersList}${config.TS}${config.KEY_API}${config.HASH}`;
-
 class Game {
     constructor(characters) {
+        this.urlAPI = [];
         this.charactersNames = characters;
         this.characters = [];
         this.resultsPromises = [];
@@ -30,9 +29,10 @@ class Game {
 
     createCards() { /*Generador de las cartas HTML*/
         setTimeout(()=>{
-            for (let i = 0; i < this.characters.length; i++) {
-                let characterName = this.characters[i].name;
-                let characterPicture = this.characters[i].thumbnail.path +"."+ this.characters[i].thumbnail.extension;
+            let randomCards = this.randomCards();
+            for (let i = 0; i < randomCards.length; i++) {
+                let characterName = randomCards[i].name;
+                let characterPicture = randomCards[i].thumbnail.path +"."+ randomCards[i].thumbnail.extension;
 
                 /*Contenedor de Imagenes*/
                 let container = document.querySelector(".cards__container");
@@ -57,11 +57,22 @@ class Game {
         },1000)
     }
 
+    randomCards(){
+        let randomCards = [];
+        let copyCharacters = [...this.characters];
+
+        randomCards = this.characters.concat(copyCharacters);
+        randomCards.sort(function() { return Math.random() - 0.5 });
+        console.table(randomCards);
+
+        return randomCards;
+    }
+
     fetchCharacterData = (character) => {
-        let URL_API = `${config.BASE_URL}${character}${config.TS}${config.KEY_API}${config.HASH}`;
+        this.urlApiGenerator(config, "getCharacters", character);
         return new Promise( (resolve, reject)=> {
             let http = new XMLHttpRequest();
-            http.open("GET", URL_API, true);
+            http.open("GET", this.urlAPI, true);
             http.onreadystatechange = () => {
                 if (http.readyState === 4) {
                     if(http.status === 200) {
@@ -70,7 +81,7 @@ class Game {
                         resolve(response.data.results[0]);
                     }
                     else {
-                        reject(new Error("Error al obtener los datos" + URL_API));
+                        reject(new Error("Error al obtener los datos" + this.urlAPI));
                     }
                 }
             }
@@ -84,6 +95,19 @@ class Game {
             this.resultsPromises.push(this.character);
         });
     }
+
+    urlApiGenerator(config, status, character){
+        switch (status) {
+            case "getCharacters":
+                this.urlAPI = `${config.BASE_URL}${character}${config.TS}${config.KEY_API}${config.HASH}`;
+                break;
+        
+            case "newGame":
+                this.urlAPI = `${config.BASE_URL}${config.charactersList}${config.TS}${config.KEY_API}${config.HASH}`;
+                break;
+        }
+    }
 }
 
 let game = new Game(config.charactersList);
+game.urlApiGenerator(config, "newGame", "");
