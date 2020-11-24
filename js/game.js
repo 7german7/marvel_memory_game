@@ -1,4 +1,4 @@
-import config from "./config";
+import config from "./config.js";
 
 class Game {
     constructor(characters) {
@@ -6,7 +6,9 @@ class Game {
         this.charactersNames = characters;
         this.characters = [];
         this.resultsPromises = [];
+    }
 
+    init() {
         this.getCharactersData();
         Promise.all(this.resultsPromises).then(characters => {
             this.characters = characters;
@@ -16,7 +18,7 @@ class Game {
 
     start() {
         this.showCharacters();
-        this.createCards();
+        this.cardsGenerator();
     }
 
     getCharacters() {
@@ -27,7 +29,7 @@ class Game {
         console.log(this.characters);
     }
 
-    createCards() { /*Generador de las cartas HTML*/
+    cardsGenerator() { /*Generador de las cartas HTML*/
         setTimeout(()=>{
             let randomCharacters = this.randomCharacters();
             for (let i = 0; i < randomCharacters.length; i++) {
@@ -54,18 +56,25 @@ class Game {
                 container.appendChild(div);
                 div.appendChild(img);
             }
-        },1000)
+        }, 1000)
     }
 
     randomCharacters(){
-        let randomCharacters = [];
+        let charactersDuplicated = this.duplicateCharacters();
+        let charactersShuffled = this.shuffleCharacters(charactersDuplicated);
+        
+        console.table(charactersShuffled);
+        return charactersShuffled;
+    }
+
+    duplicateCharacters() {
         let copyCharacters = [...this.characters];
+        let charactersDuplicated = this.characters.concat(copyCharacters);
+        return charactersDuplicated;
+    }
 
-        randomCharacters = this.characters.concat(copyCharacters);
-        randomCharacters.sort(function() { return Math.random() - 0.5 });
-        console.table(randomCharacters);
-
-        return randomCharacters;
+    shuffleCharacters(charactersDuplicated) {
+       return charactersDuplicated.sort(function() { return Math.random() - 0.5 });
     }
 
     fetchCharacterData = (character) => {
@@ -111,3 +120,4 @@ class Game {
 
 let game = new Game(config.charactersList);
 game.urlApiGenerator(config, "newGame", "");
+game.init();
