@@ -1,4 +1,5 @@
 import config from "./config.js";
+import Card from "./card.js";
 
 class Game {
     constructor(characters) {
@@ -32,30 +33,20 @@ class Game {
     cardsGenerator() { /*Generador de las cartas HTML*/
         setTimeout(()=>{
             let randomCharacters = this.randomCharacters();
-            for (let i = 0; i < randomCharacters.length; i++) {
-                let characterName = randomCharacters[i].name;
-                let characterPicture = randomCharacters[i].thumbnail.path +"."+ randomCharacters[i].thumbnail.extension;
+            let cardsContainer = document.querySelector(".cards__container");
+            randomCharacters.forEach(character => {
+                let characterPicture = character.thumbnail.path +"."+ character.thumbnail.extension;
 
-                /*Contenedor de Imagenes*/
-                let container = document.querySelector(".cards__container");
-
-                /*Contenedor de Imagen*/
-                let div = document.createElement("div");
-                div.classList.add("card-item");
-
-                /*Imagen*/
-                let img = document.createElement("img");
-                let attr = document.createAttribute("src");
-                attr.value = characterPicture;
-                img.setAttributeNode(attr);
-                attr = document.createAttribute("alt");
-                attr.value = characterName;
-                img.setAttributeNode(attr);
-
-                /*Ubicaciones*/
-                container.appendChild(div);
-                div.appendChild(img);
-            }
+                /*Propiedades*/
+                let newCard = new Card(cardsContainer);
+                newCard.setProperties(
+                    character.name,
+                    characterPicture //character.image
+                );
+                
+                newCard.loadElements();
+                newCard.render();
+            });
         }, 1000)
     }
 
