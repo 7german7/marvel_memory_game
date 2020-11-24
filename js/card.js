@@ -12,17 +12,17 @@ class Card {
     this.cardScene = document.createElement("div");
     this.cardScene.classList.add("scene");
     this.card = document.createElement("div");
-    this.card.addEventListener("click", ()=>{
-      this.card.classList.toggle('is-flipped');
-    });
+    let attr = document.createAttribute("data-set");
+    attr.value = this.characterName;
     this.card.classList.add("card");
+    this.card.setAttributeNode(attr);
     this.cardFaceFront = document.createElement("div");
     this.cardFaceFront.classList.add("card__face", "card__face--front");
     this.cardFaceBack = document.createElement("div");
     this.cardFaceBack.classList.add("card__face", "card__face--back");
 
     this.image = document.createElement("img");
-    let attr = document.createAttribute("src");
+    attr = document.createAttribute("src");
     attr.value = this.characterPicture;
     this.image.setAttributeNode(attr);
     attr = document.createAttribute("alt");

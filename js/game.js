@@ -7,6 +7,7 @@ class Game {
         this.charactersNames = characters;
         this.characters = [];
         this.resultsPromises = [];
+        this.cards = Array(20);
     }
 
     init() {
@@ -46,6 +47,40 @@ class Game {
                 
                 newCard.loadElements();
                 newCard.render();
+                newCard.card.addEventListener("click", ()=>{
+                    newCard.card.classList.add("is-flipped");
+                    let cardsSelected = document.querySelectorAll(".is-flipped");
+                    console.log(cardsSelected);
+
+                    if(cardsSelected.length <= 2){
+                        if(cardsSelected.length === 2) {
+                            if(cardsSelected[0].dataset.set!==cardsSelected[1].dataset.set) {
+                                setTimeout( ()=>{
+                                    cardsSelected.forEach(cardSelected => {
+                                        cardSelected.classList.remove("is-flipped");
+                                    });
+                                },1100);
+                            }
+                            else {
+                                console.log("Son iguales");
+                                setTimeout(()=>{
+                                    cardsSelected.forEach(cardSelected => {
+                                        cardSelected.classList.remove("is-flipped");
+                                        cardSelected.classList.add("is-flipped--bloqued");
+                                        console.log(cardSelected);
+                                    });
+                                }, 1000);
+                            }
+                        }
+                    }
+                    else{
+                        cardsSelected.forEach(cardSelected => {
+                            cardSelected.classList.remove("is-flipped");
+                        });
+                    }
+                });
+
+                this.cards.push(newCard);
             });
         }, 1000)
     }
