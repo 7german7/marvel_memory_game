@@ -8,6 +8,7 @@ class Game {
         this.characters = [];
         this.resultsPromises = [];
         this.cards = Array(20);
+        this.cardsFlipped = 0;
     }
 
     init() {
@@ -47,39 +48,7 @@ class Game {
                 
                 newCard.loadElements();
                 newCard.render();
-                newCard.card.addEventListener("click", ()=>{
-                    newCard.card.classList.add("is-flipped");
-                    let cardsSelected = document.querySelectorAll(".is-flipped");
-                    console.log(cardsSelected);
-
-                    if(cardsSelected.length <= 2){
-                        if(cardsSelected.length === 2) {
-                            if(cardsSelected[0].dataset.set!==cardsSelected[1].dataset.set) {
-                                setTimeout( ()=>{
-                                    cardsSelected.forEach(cardSelected => {
-                                        cardSelected.classList.remove("is-flipped");
-                                    });
-                                },1100);
-                            }
-                            else {
-                                console.log("Son iguales");
-                                setTimeout(()=>{
-                                    cardsSelected.forEach(cardSelected => {
-                                        cardSelected.classList.remove("is-flipped");
-                                        cardSelected.classList.add("is-flipped--bloqued");
-                                        console.log(cardSelected);
-                                    });
-                                }, 1000);
-                            }
-                        }
-                    }
-                    else{
-                        cardsSelected.forEach(cardSelected => {
-                            cardSelected.classList.remove("is-flipped");
-                        });
-                    }
-                });
-
+                this.eventClickGenerator(newCard);
                 this.cards.push(newCard);
             });
         }, 1000)
@@ -141,6 +110,45 @@ class Game {
                 this.urlAPI = `${config.BASE_URL}${config.charactersList}${config.TS}${config.KEY_API}${config.HASH}`;
                 break;
         }
+    }
+
+    eventClickGenerator(newCard) {
+        newCard.card.addEventListener("click", (e)=>{
+            newCard.card.classList.add("is-flipped");
+            let cardsSelected = document.querySelectorAll(".is-flipped");
+            console.log(cardsSelected);
+
+            if(cardsSelected.length <= 2){
+                if(cardsSelected.length === 2) {
+                    if(cardsSelected[0].dataset.set!==cardsSelected[1].dataset.set) {
+                        setTimeout( ()=>{
+                            cardsSelected.forEach(cardSelected => {
+                                cardSelected.classList.remove("is-flipped");
+                            });
+                        },1100);
+                    }
+                    else {
+                        console.log("Son iguales");
+                        this.cardsFlipped++;
+                        setTimeout(()=>{
+                            cardsSelected.forEach(cardSelected => {
+                                cardSelected.classList.remove("is-flipped");
+                                cardSelected.classList.add("is-flipped--bloqued");
+                                console.log(cardSelected);
+                            });
+                            if(this.cardsFlipped===10) {
+                                alert("Haz Ganado");
+                            }
+                        }, 1000);
+                    }
+                }
+            }
+            else{
+                cardsSelected.forEach(cardSelected => {
+                    cardSelected.classList.remove("is-flipped");
+                });
+            }
+        });
     }
 }
 

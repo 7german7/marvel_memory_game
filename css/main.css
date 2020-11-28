@@ -85,7 +85,7 @@ main {
 }
 
 .card.is-flipped--bloqued {
-  transform: rotateY(0deg);
+  transform: rotateY(180deg);
 }
 
 .card img {
