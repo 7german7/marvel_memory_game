@@ -8,15 +8,31 @@
 </head>
 <body>
     <div class="img-background__container"></div>
-    <main>
-        <section>
-            <audio controls autoplay loop>
-                <source src="./assets/music/the_avengers_theme_song.mp3" type="audio/mpeg">
-            </audio>
+    <header>
+        <section class="audio">
+            <div class="audio__container">
+                <audio controls loop>
+                    <source src="./assets/music/the_avengers_theme_song.mp3" type="audio/mpeg">
+                </audio>
+            </div>
         </section>
-        <section class="cards__container">
+    </header>
+    <main>
+        <section class="cards">
+            <div class="cards__container">
+            </div>
         </section>
     </main>
+    <footer class="info">
+        <section class="info__container">
+            <div>
+                <h3>Mov</h3>
+            </div>
+            <div>
+                <h3>Tiempo</h3>
+            </div>
+        </section>
+    </footer>
     <script type="module" src="./js/game.js"></script>
 </body>
 </html>
