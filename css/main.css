@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+  font-family: "DM Sans", sans-serif;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -11,6 +16,7 @@ body {
   justify-content: center;
   flex-direction: column;
   padding: 1%;
+  font-size: 1.6rem;
 }
 
 .img-background__container {
@@ -19,7 +25,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.7;
+  opacity: 0.5;
   background-image: url("https://i.pinimg.com/originals/e6/ff/99/e6ff99ead6c8ea10b6a8be5ca7fcaade.jpg");
   background-repeat: no-repeat;
   background-size: cover;
