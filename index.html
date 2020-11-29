@@ -3,36 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Memory Game</title>
-    <link rel="stylesheet" href="./css/main.css">
+    <title>Marvel Memory Game | Welcome</title>
+    <link rel="stylesheet" href="./css/init.css">
 </head>
 <body>
-    <div class="img-background__container"></div>
     <header>
+        <section id="title">
+            <div class="title__container">
+                <h1 class="title">Marvel Memory Game</h1>
+            </div>
+        </section>
         <section class="audio">
             <div class="audio__container">
-                <audio controls loop autoplay>
-                    <source src="./assets/music/the_avengers_theme_song.mp3" type="audio/mpeg">
+                <audio loop autoplay>
+                    <source src="../assets/music/the_avengers_theme_song.mp3" type="audio/mpeg">
                 </audio>
             </div>
         </section>
     </header>
     <main>
-        <section class="cards">
-            <div class="cards__container">
+        <section id="play">
+            <div class="play__container">
+                <a class="play-button" href="./pages/index.html">Play Game</a>
             </div>
         </section>
     </main>
-    <!-- <footer class="info">
-        <section class="info__container">
-            <div>
-                <h3>Mov</h3>
-            </div>
-            <div>
-                <h3>Tiempo</h3>
-            </div>
+    <footer>
+        <section id="footer">
+            <ul class="social__container">
+                <li class="social-item">
+                    <a href="https://platzi.com/@germanceballos/" target="_blank">Platzi</a>
+                </li>
+                <li class="social-item">
+                    <a href="https://github.com/7german7/marvel_memory_game/" target="_blank">Github</a>
+                </li>
+                <li class="social-item">
+                    <a href="https://twitter.com/German_Ceballos/" target="_blank">Twitter</a>
+                </li>
+            </ul>
         </section>
-    </footer> -->
-    <script type="module" src="./js/game.js"></script>
+    </footer>
 </body>
 </html>
