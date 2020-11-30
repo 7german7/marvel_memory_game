@@ -5,9 +5,7 @@
 3. Mostrar mensaje de victoria.
 4. Mostrar Movimientos
 5. Mostrar Tiempo
-6. Diseño responsive
-   - <s>Mobile</s>
-   - Laptops and Desktop
+6. <s>Diseño responsive</s>
 
 ## Playability
 
@@ -15,4 +13,4 @@
 
 ## Problems
 
-- Resolver problema de Scroll Down (ajustar alto de pantalla del juego).
+- <s>Resolver problema de Scroll Down (ajustar alto de pantalla del juego).</s>

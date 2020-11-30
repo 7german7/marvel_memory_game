@@ -1,0 +1,16 @@
+section#title h1 {
+  font-size: 4rem;
+}
+
+section#play .play__container {
+  width: 30%;
+}
+
+section#footer {
+  display: flex;
+  justify-content: center;
+}
+
+section#footer .social__container {
+  width: 50%;
+}

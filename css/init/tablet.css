@@ -1,0 +1,9 @@
+section#title {
+  top: 25%;
+}
+
+body {
+  background-image: url("../../assets/img/tinified/avengers-background-1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}

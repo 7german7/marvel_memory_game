@@ -1,0 +1,13 @@
+.img-background__container {
+  background-image: url("../../assets/img/tinified/avengers-background-2.jpg");
+}
+
+.cards__container {
+  justify-content: center;
+}
+
+.scene {
+  padding: 3px;
+  width: calc(17% - calc(3px * 2));
+  height: calc(17vw - 17px);
+}

@@ -1,0 +1,20 @@
+section#title {
+  top: 25%;
+}
+
+section#title h1 {
+  font-size: 6rem;
+}
+
+section#play .play__container {
+  width: 15%;
+}
+
+section#footer {
+  justify-content: flex-end;
+  padding: 10px 0px;
+}
+
+section#footer .social__container {
+  width: 30%;
+}

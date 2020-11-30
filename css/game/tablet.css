@@ -1,0 +1,4 @@
+.scene {
+  width: calc(20% - calc(3px * 2));
+  height: calc(20vw - 13px);
+}

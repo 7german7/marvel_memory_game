@@ -14,12 +14,9 @@ body {
   width: 100vw;
   height: 100vh;
   font-size: 1.6rem;
-  background-image: url("../assets/img/marvel_init_brackground.jpg");
+  background-image: url("../../assets/img/marvel_init_brackground.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   /* border: 2px solid green; */
 }
 
@@ -33,19 +30,25 @@ section#play {
 }
 
 section#title {
-  top: 0px;
+  position: absolute;
+  top: 10%;
   text-align: center;
 }
 
 section#title h1 {
   font-size: 3rem;
+  color: red;
+  text-shadow: 0px 0px 10px black;
 }
 
 section#footer {
+  position: absolute;
   bottom: 0px;
 }
 
 section#play {
+  position: absolute;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,14 +58,14 @@ section#play .play__container {
   display: inherit;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 50%;
   height: 40px;
-  background-color: yellow;
+  background-color: red;
   border-radius: 30px;
 }
 
 section#play .play__container:hover {
-  box-shadow: 0px 0px 20px yellow;
+  box-shadow: 0px 0px 10px white;
   cursor: pointer;
 }
 
@@ -87,5 +90,6 @@ section#footer .social__container .social-item a {
 }
 
 section#footer .social__container .social-item a:hover {
-  color: yellow;
+  color: red;
+  text-shadow: 0px 0px 10px red;
 }

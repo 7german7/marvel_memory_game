@@ -1,0 +1,19 @@
+.img-background__container {
+  background-position: top;
+}
+
+section.cards {
+  display: flex;
+  justify-content: center;
+}
+
+.cards__container {
+  width: 50%;
+  justify-content: center;
+}
+
+.scene {
+  padding: 3px;
+  width: calc(20% - calc(3px * 2));
+  height: calc(calc(20vw / 2) - 17px);
+}

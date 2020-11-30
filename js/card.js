@@ -1,6 +1,7 @@
 class Card {
   constructor(cardsContainer){
     this.cardsContainer = cardsContainer;
+    this.characterBackPicture = "https://i.pinimg.com/originals/8a/d1/ed/8ad1edceeef31bb596935f42802532b5.jpg";
   }
 
   setProperties(name, characterPicture){
@@ -28,6 +29,14 @@ class Card {
     attr = document.createAttribute("alt");
     attr.value = this.characterName;
     this.image.setAttributeNode(attr);
+
+    this.backImage = document.createElement("img");
+    attr = document.createAttribute("src");
+    attr.value = this.characterBackPicture;
+    this.backImage.setAttributeNode(attr);
+    attr = document.createAttribute("alt");
+    attr.value = this.characterName;
+    this.backImage.setAttributeNode(attr);
   }
 
   render(){
@@ -35,6 +44,7 @@ class Card {
     this.cardScene.appendChild(this.card);
     this.card.appendChild(this.cardFaceFront);
     this.cardFaceFront.appendChild(this.image);
+    this.cardFaceBack.appendChild(this.backImage);
     this.card.appendChild(this.cardFaceBack);
   }
 }
