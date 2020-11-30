@@ -1,5 +1,6 @@
 .img-background__container {
   background-image: url("../../assets/img/tinified/avengers-background-2.jpg");
+  background-position: top;
 }
 
 .cards__container {
