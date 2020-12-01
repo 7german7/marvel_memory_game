@@ -126,6 +126,10 @@ class Game {
         },1000);
     }
 
+    stopClock(){
+        clearInterval(this.timeId);
+    }
+
     showTime() {
         timeElement.innerHTML = "Time "+this.time;
     }
@@ -146,6 +150,7 @@ class Game {
         alert("Haz Ganado");
         this.resetMovements();
         this.showMovements();
+        this.stopClock();
     }
 
     eventClickGenerator(newCard) {
