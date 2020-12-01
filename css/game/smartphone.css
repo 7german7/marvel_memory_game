@@ -137,7 +137,7 @@ section.info__container {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
