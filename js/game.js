@@ -3,6 +3,10 @@ import Card from "./card.js";
 
 const movementElement = document.querySelector(".info-mov > .info-data");
 const timeElement = document.querySelector(".info-time > .info-data");
+const preloaderElement = document.querySelector(".preloader__container");
+const moveElement = document.querySelector(".info-mov");
+const timerElement = document.querySelector(".info-time");
+const audioElement = document.querySelector(".audio__container");
 
 class Game {
     constructor(characters) {
@@ -16,12 +20,23 @@ class Game {
         this.isFirstCardFlipped = true;
         this.timeId = 0;
         this.time = 0;
+
+        this.hideTimer();
+        this.hideMove();
+        this.hideAudio();
     }
 
     init() {
         this.getCharactersData();
-        Promise.all(this.resultsPromises).then(characters => {
+        Promise.all(this.resultsPromises)
+        .then(characters => {
             this.characters = characters;
+        })
+        .then(()=>{
+            this.hidePreloader();
+            this.showTimer();
+            this.showMove();
+            this.showAudio();
             this.start();
         });
     }
@@ -40,25 +55,23 @@ class Game {
     }
 
     cardsGenerator() { /*Generador de las cartas HTML*/
-        setTimeout(()=>{
-            let randomCharacters = this.randomCharacters();
-            let cardsContainer = document.querySelector(".cards__container");
-            randomCharacters.forEach(character => {
-                let characterPicture = character.thumbnail.path +"."+ character.thumbnail.extension;
-
-                /*Propiedades*/
-                let newCard = new Card(cardsContainer);
-                newCard.setProperties(
-                    character.name,
-                    characterPicture //character.image
-                );
+        let randomCharacters = this.randomCharacters();
+        let cardsContainer = document.querySelector(".cards__container");
+        randomCharacters.forEach(character => {
+            let characterPicture = character.thumbnail.path +"."+ character.thumbnail.extension;
+            
+            /*Propiedades*/
+            let newCard = new Card(cardsContainer);
+            newCard.setProperties(
+                character.name,
+                characterPicture //character.image
+            );
                 
-                newCard.loadElements();
-                newCard.render();
-                this.eventClickGenerator(newCard);
-                this.cards.push(newCard);
-            });
-        }, 1000)
+            newCard.loadElements();
+            newCard.render();
+            this.eventClickGenerator(newCard);
+            this.cards.push(newCard);
+        });
     }
 
     randomCharacters(){
@@ -102,8 +115,7 @@ class Game {
 
     getCharactersData = async () => {
         await this.charactersNames.forEach(character => {
-            this.character = this.fetchCharacterData(character);
-            this.resultsPromises.push(this.character);
+            this.resultsPromises.push(this.fetchCharacterData(character));
         });
     }
 
@@ -146,11 +158,39 @@ class Game {
         this.movements = 0; 
     }
 
+    showAudio(){
+        audioElement.style.display = "flex";
+    }
+
+    showMove(){
+        moveElement.style.display = "flex";
+    }
+
+    showTimer(){
+        timerElement.style.display = "flex";
+    }
+
+    hideAudio(){
+        audioElement.style.display = "none";
+    }
+
+    hideMove(){
+        moveElement.style.display = "none";
+    }
+
+    hideTimer(){
+        timerElement.style.display = "none";
+    }
+
     victory(){
         alert("Haz Ganado");
         this.resetMovements();
         this.showMovements();
         this.stopClock();
+    }
+
+    hidePreloader(){
+        preloaderElement.style.display = "none";
     }
 
     eventClickGenerator(newCard) {

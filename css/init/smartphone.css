@@ -101,5 +101,5 @@ section#footer .social__container .social-item a {
 
 section#footer .social__container .social-item a:hover {
   color: red;
-  text-shadow: 0px 0px 10px red;
+  text-shadow: 0px 0px 5px red;
 }
