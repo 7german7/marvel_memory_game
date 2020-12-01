@@ -1,6 +1,9 @@
 import config from "./config.js";
 import Card from "./card.js";
 
+const movementElement = document.querySelector(".info-mov > .info-data");
+const timeElement = document.querySelector(".info-time > .info-data");
+
 class Game {
     constructor(characters) {
         this.urlAPI = [];
@@ -9,6 +12,10 @@ class Game {
         this.resultsPromises = [];
         this.cards = Array(20);
         this.cardsFlipped = 0;
+        this.movements = 0;
+        this.isFirstCardFlipped = true;
+        this.timeId = 0;
+        this.time = 0;
     }
 
     init() {
@@ -112,14 +119,50 @@ class Game {
         }
     }
 
+    startClock(){
+        this.timeId = setInterval(() => {
+            this.time++;
+            this.showTime();
+        },1000);
+    }
+
+    showTime() {
+        timeElement.innerHTML = "Time "+this.time;
+    }
+
+    addMovement(){
+        this.movements++;
+    }
+
+    showMovements() {
+        movementElement.innerHTML = "Mov "+this.movements;
+    }
+
+    resetMovements(){
+        this.movements = 0; 
+    }
+
+    victory(){
+        alert("Haz Ganado");
+        this.resetMovements();
+        this.showMovements();
+    }
+
     eventClickGenerator(newCard) {
         newCard.card.addEventListener("click", (e)=>{
+            if(this.isFirstCardFlipped) {
+                this.isFirstCardFlipped = false;
+                this.startClock();
+            }
+
             newCard.card.classList.add("is-flipped");
             let cardsSelected = document.querySelectorAll(".is-flipped");
             console.log(cardsSelected);
 
             if(cardsSelected.length <= 2){
                 if(cardsSelected.length === 2) {
+                    this.addMovement();
+                    this.showMovements();
                     if(cardsSelected[0].dataset.set!==cardsSelected[1].dataset.set) {
                         setTimeout( ()=>{
                             cardsSelected.forEach(cardSelected => {
@@ -137,7 +180,7 @@ class Game {
                                 console.log(cardSelected);
                             });
                             if(this.cardsFlipped===10) {
-                                alert("Haz Ganado");
+                                this.victory();
                             }
                         }, 1000);
                     }

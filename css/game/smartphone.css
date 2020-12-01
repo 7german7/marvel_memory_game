@@ -127,8 +127,7 @@ audio::-webkit-media-controls-panel {
 }
 
 footer.info {
-  position: absolute;
-  bottom: 0px;
+  position: relative;
   width: 100%;
   height: 50px;
 }
